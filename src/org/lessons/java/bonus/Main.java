@@ -86,7 +86,21 @@ public class Main {
         HashSet<Wish> hashWishlist = new HashSet<>(doHashSet(wishlist));
         System.out.println("HashSet: " + hashWishlist);
 
+        System.out.println();
 
+        //faccio un HashMap che fa il counter dei regali per destinatario
+        Map<String, Integer> counterRecipient = new HashMap<>();
+
+        for(Wish wish : wishlist){
+            if(counterRecipient.containsKey(wish.getRecipient())){
+                int wishCount = counterRecipient.get(wish.getRecipient());
+                counterRecipient.put(wish.getRecipient(), wishCount + 1);
+            }else{
+                counterRecipient.put(wish.getRecipient(), 1);
+            }
+        }
+
+        System.out.println("counterRecipient: " + counterRecipient);
 
         scan.close();
     }
