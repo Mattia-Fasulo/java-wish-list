@@ -63,12 +63,8 @@ public class Main {
         Map<Wish, Integer> counter = new HashMap<>();
 
         for(Wish wish : wishlist){
-            if(counter.containsKey(wish)){
-                int wishCount = counter.get(wish);
-                counter.put(wish, wishCount + 1);
-            }else{
-                counter.put(wish, 1);
-            }
+            counter.putIfAbsent(wish, 0);
+            counter.put(wish, counter.get(wish) +1);
         }
 
         for (Map.Entry<Wish, Integer> entry : counter.entrySet()) {
@@ -105,7 +101,7 @@ public class Main {
         scan.close();
     }
 
-    private static HashSet<Wish> doHashSet(List<Wish> list){
+    private static Set<Wish> doHashSet(List<Wish> list){
         return new HashSet<Wish>(list);
     }
 }

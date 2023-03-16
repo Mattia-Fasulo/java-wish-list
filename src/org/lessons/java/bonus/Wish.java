@@ -11,8 +11,7 @@ public class Wish {
     public Wish(String name, String recipient) {
         this.name = name;
         this.recipient = recipient;
-        count++;
-        numWish = count;
+
     }
 
     //getter and setter
@@ -36,8 +35,28 @@ public class Wish {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Wish wish = (Wish) o;
+
+        if (numWish != wish.numWish) return false;
+        if (!getName().equals(wish.getName())) return false;
+        return getRecipient().equals(wish.getRecipient());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName().hashCode();
+        result = 31 * result + getRecipient().hashCode();
+        result = 31 * result + numWish;
+        return result;
+    }
+
+    @Override
     public String toString() {
-        return "Wish " + numWish + "{" +
+        return  "{" +
                 "name='" + name + '\'' +
                 ", recipient='" + recipient + '\'' +
                 '}';
