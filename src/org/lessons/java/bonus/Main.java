@@ -16,7 +16,7 @@ public class Main {
 
         System.out.println();
 
-        List<String> wishlist = new ArrayList<>();
+        List<Wish> wishlist = new ArrayList<>();
 
         boolean stop = false;
         int count = 0;
@@ -24,8 +24,15 @@ public class Main {
         while(!stop){
             count++;
 
-            System.out.print("your wish? ");
-            String wish = scan.nextLine();
+            System.out.print("name wish? ");
+            String nameWish = scan.nextLine();
+
+            System.out.print("wish recipient? ");
+            String recipient = scan.nextLine();
+
+            System.out.println();
+
+            Wish wish = new Wish(nameWish, recipient);
 
             wishlist.add(wish);
 
@@ -37,7 +44,7 @@ public class Main {
             System.out.println();
         }
 
-        Collections.sort(wishlist);
+        /*Collections.sort(wishlist);*/
         System.out.println("your wishlist: " + wishlist);
         System.out.println();
 
@@ -53,9 +60,9 @@ public class Main {
 
 
         //faccio lun HashMap che fa il counter dei regali uguali
-        Map<String, Integer> counter = new HashMap<>();
+        Map<Wish, Integer> counter = new HashMap<>();
 
-        for(String wish : wishlist){
+        for(Wish wish : wishlist){
             if(counter.containsKey(wish)){
                 int wishCount = counter.get(wish);
                 counter.put(wish, wishCount + 1);
@@ -64,19 +71,19 @@ public class Main {
             }
         }
 
-        for (Map.Entry<String, Integer> entry : counter.entrySet()) {
+        for (Map.Entry<Wish, Integer> entry : counter.entrySet()) {
             System.out.println(entry.getKey() + ": " +entry.getValue());
         }
 
         System.out.println();
 
         //faccio una nuova lista senza doppioni
-        List<String> wishlistUnique = new ArrayList<>(new HashSet<>(wishlist));
+        List<Wish> wishlistUnique = new ArrayList<>(new HashSet<>(wishlist));
         System.out.println("WishList without clone: " + wishlistUnique);
 
         System.out.println();
         //creo un HashSet partendo dalla lista dei desideri
-        HashSet<String> hashWishlist = new HashSet<>(doHashSet(wishlist));
+        HashSet<Wish> hashWishlist = new HashSet<>(doHashSet(wishlist));
         System.out.println("HashSet: " + hashWishlist);
 
 
@@ -84,7 +91,7 @@ public class Main {
         scan.close();
     }
 
-    private static HashSet<String> doHashSet(List<String> list){
-        return new HashSet<String>(list);
+    private static HashSet<Wish> doHashSet(List<Wish> list){
+        return new HashSet<Wish>(list);
     }
 }

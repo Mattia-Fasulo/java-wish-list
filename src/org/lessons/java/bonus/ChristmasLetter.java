@@ -7,10 +7,10 @@ public class ChristmasLetter {
     //attributes
     private String name;
     private String address;
-    private List<String> wishlist;
+    private List<Wish> wishlist;
 
     //constructor
-    public ChristmasLetter(String name, String address, List<String> wishlist) throws ChristmasException {
+    public ChristmasLetter(String name, String address, List<Wish> wishlist) throws ChristmasException {
         this.name = name;
         this.address = address;
         this.wishlist = wishlist;
@@ -34,11 +34,11 @@ public class ChristmasLetter {
         this.address = address;
     }
 
-    public List<String> getWishlist() {
+    public List<Wish> getWishlist() {
         return wishlist;
     }
 
-    public void setWishlist(List<String> wishlist) {
+    public void setWishlist(List<Wish> wishlist) {
         this.wishlist = wishlist;
     }
 
