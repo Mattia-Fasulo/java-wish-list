@@ -72,8 +72,19 @@ public class Main {
 
         //faccio una nuova lista senza doppioni
         List<String> wishlistUnique = new ArrayList<>(new HashSet<>(wishlist));
-        System.out.println(wishlistUnique);
+        System.out.println("WishList without clone: " + wishlistUnique);
+
+        System.out.println();
+        //creo un HashSet partendo dalla lista dei desideri
+        HashSet<String> hashWishlist = new HashSet<>(doHashSet(wishlist));
+        System.out.println("HashSet: " + hashWishlist);
+
+
 
         scan.close();
+    }
+
+    private static HashSet<String> doHashSet(List<String> list){
+        return new HashSet<String>(list);
     }
 }
